@@ -21,10 +21,11 @@
       </div>
 
       <form role="form" action="/uploader" enctype="multipart/form-data" method="post">
-        <input type="hidden" name="userid" value="{{.UserData.userid}}" />
+        <label for="fn">File name to save</label>
+        <input type="text" id="fn"  name="filename"/>
         <div class="form-group">
-          <label for="avatarFile">Select file</label>
-          <input type="file" name="avatarFile" id="avatarFile" />
+          <label for="ftu">Select file to upload</label>
+          <input type="file" id="ftu" name="fileToUpload"/>
         </div>
         <input type="submit" value="Upload" class="btn btn-default" />
       </form>
