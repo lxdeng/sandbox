@@ -1,3 +1,4 @@
+import os
 import subprocess as sub
 
 def execute_cmd(command):
@@ -16,3 +17,10 @@ def execute_cmd_with_password(command, password):
     print "Finished executing cmd: " + command
     return exit_code, output, error
 
+def execute_cmd_nohup(command):
+    print "Executing cmd nohup: " + command
+
+    command2 = 'nohup ' + command + ' &'
+    os.system(command2)
+
+    return 0, 'execute_cmd_nohup: command submitted', ''

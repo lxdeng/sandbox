@@ -1,0 +1,12 @@
+Use https,
+git clone https://github.com/lxdeng/sandbox
+
+git config
+  git config -l
+  git config --global core.editor vim
+  git config --global user.name lxdeng
+  git config --global user.email foo@gmail.com
+  cat ~/.gitconfig
+
+Avoid input user name, for https.
+  git config remote.origin.url https://eric@github.com/eric/myproject

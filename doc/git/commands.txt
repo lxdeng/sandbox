@@ -1,2 +1,0 @@
-Avoid input user name, for https.
-  git config remote.origin.url https://eric@github.com/eric/myproject
