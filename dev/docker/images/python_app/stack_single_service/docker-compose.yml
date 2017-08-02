@@ -3,7 +3,7 @@ services:
   web:
     image: longx/friendlyhello:test
     deploy:
-      replicas: 4
+      replicas: 2
       resources:
         limits:
           cpus: "0.1"
