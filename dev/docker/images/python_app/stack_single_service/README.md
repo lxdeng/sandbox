@@ -46,4 +46,15 @@ uve6rz5q947k  lab_web  replicated  3/3       longx/friendlyhello:test
 Scale down:
 $ docker service scale lab_web=2
 
+Network:
+docker inspect <container>. It shows the container is put into two networks: ingress and lab_webnet.
+It seems the container is also in the the docker_gwbridge network, as the following. But the inspect command does not show it.
+
+$ docker exec -it <container id> sh
+# ip addr show
+It shows three IPs:
+  one for lab_web
+  one for ingress
+  one for docker_gwbridge 
+
 
