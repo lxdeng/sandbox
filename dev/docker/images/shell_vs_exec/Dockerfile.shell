@@ -1,0 +1,8 @@
+FROM busybox
+
+ENV NAME=jack
+
+# shell form, /bin/sh -c <command> under the hood and normal shell processing happens
+# it uses sh, not bash
+# the PID 1 process is the /bin/sh, not the <command>
+ENTRYPOINT echo "hello $NAME"

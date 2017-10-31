@@ -1,0 +1,9 @@
+FROM busybox
+
+ENV NAME=jack
+
+# exec form, <instruction> ["executable", "param1", "param2", ...]
+# shell processing does not happen, hence $NAME is not substituted.
+# exec form is the recommended
+# the PID 1 process is the command specified
+ENTRYPOINT ["/bin/echo", "hello $NAME"]

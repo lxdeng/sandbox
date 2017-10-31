@@ -1,0 +1,6 @@
+FROM busybox
+
+ENTRYPOINT ["/bin/ping", "-c", "3"]
+
+# CMD is appened to ENTRYPOINT
+CMD ["localhost"]
