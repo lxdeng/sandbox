@@ -23,10 +23,11 @@ def merge_sort_count(alist):
                 alist[k]=left_half[i]
                 i=i+1
             else:
-                temp = i
-                while temp < len(left_half):
-                    print("reverse pair:", left_half[temp], right_half[j])
-                    temp = temp + 1
+                #uncomment the following to print out the reverse pairs
+                #temp = i
+                #while temp < len(left_half):
+                #    print("reverse pair:", left_half[temp], right_half[j])
+                #    temp = temp + 1
                 count = count + (len(left_half) - i)
                 alist[k]=right_half[j]
                 j=j+1
