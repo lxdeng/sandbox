@@ -93,6 +93,10 @@ print "total edges pointed to Fly: ", count
 print "nodes_to_Fly=", nodes_to_Fly
 
 
+# this does the same thing
+print "edges pointed to Fly: ", G.in_edges('Fly')
+
+
 #each edge has a weight of 1. The shortest path is the fewest edges.
 #Use this to verify that your graph built correctly.
 #t = nx.shortest_path(G, 'Spider', 'Fly', weight='weight')
