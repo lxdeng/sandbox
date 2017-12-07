@@ -82,12 +82,15 @@ edges = G.edges()
 
 print "all edges pointed to Fly"
 count = 0
+nodes_to_Fly=[]
+
 for n in nodes:
    if (n, 'Fly') in edges:
       count = count +1
+      nodes_to_Fly.append((n, 'Fly'))
       print (n, 'Fly')
 print "total edges pointed to Fly: ", count
-
+print "nodes_to_Fly=", nodes_to_Fly
 
 
 #each edge has a weight of 1. The shortest path is the fewest edges.
