@@ -103,5 +103,24 @@ print "edges pointed to Fly: ", G.in_edges('Fly')
 
 #print("shortest graph:", t)
 
+def get_paths(start, end):
+  if start == end:
+    return 0
 
+  edges = G.in_edges(end)
+  print "in edges:" , edges
+
+  if len(edges) == 0:
+    return 0
+  
+  count = 0
+  for (s, end) in edges:
+    if s == start:
+      count = count + 1
+    else:
+      count = count + get_paths(start, s)
+
+  return count
+
+print get_paths('Spider', 'Fly')
 
