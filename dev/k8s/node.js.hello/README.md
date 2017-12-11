@@ -40,3 +40,11 @@ kubectl apply -f hello-pod.yaml
 kubectl delete -f hello-pod.yaml
 
 grace period is 30 seconds
+
+
+3. Health checks
+$ kubectl logs -f hello-node
+Received request for URL: /healthy
+Received request for URL: /healthy
+Received request for URL: /healthy
+
