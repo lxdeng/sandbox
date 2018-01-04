@@ -1,0 +1,17 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: hello-node-rs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: hello
+  template:
+    metadata:
+      labels:
+        run: hello
+    spec:
+      containers:
+        - name: hello-node
+          image: "hello-node:v1"
