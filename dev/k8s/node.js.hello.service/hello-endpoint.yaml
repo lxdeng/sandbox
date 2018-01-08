@@ -1,0 +1,9 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: hello-node
+subsets:
+  - addresses:
+      - ip: 10.32.0.12
+    ports:
+      - port: 8080
