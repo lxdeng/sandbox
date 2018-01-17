@@ -1,6 +1,8 @@
 docker build -t hello-node:v1 .
 
 1. kubectl run hello-node --image=hello-node:v1 --port=8080
+   or
+   kubectl apply -f hello-deployment.yaml
 
 To get pod internal IP.
 kubectl get pods
