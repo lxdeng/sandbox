@@ -19,3 +19,16 @@ def triple(x: Int) = x * 3
 
 println(apply(double, 10))
 println(apply(triple, 10))
+
+def factory(name: String): Int => Int = name match {
+  case "double" => double
+  case "triple" => triple
+}
+
+var f = factory("double")
+println(f)
+println(f(2))
+
+f = factory("triple")
+println(f(2))
+
