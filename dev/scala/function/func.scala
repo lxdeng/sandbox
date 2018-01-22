@@ -10,3 +10,12 @@ def add(a: Int, b: Int): Int = {
 }
 
 println(add(1, 2))
+
+// The type A => B is the type of a function that takes an argument of type A and returns a result of type B
+def apply(f: Int => Int, x: Int) :Int = f(x)
+
+def double(x: Int) = x * 2
+def triple(x: Int) = x * 3
+
+println(apply(double, 10))
+println(apply(triple, 10))
