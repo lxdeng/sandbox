@@ -1,3 +1,4 @@
+// the require() function imports a module
 var http = require('http');
 
 console.log('http listening port 8080')
