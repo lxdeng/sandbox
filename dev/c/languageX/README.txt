@@ -17,3 +17,8 @@ ldd <executable>
 
 static link:
 $ gcc -static x.c -o x
+
+
+vscode:
+1. create tasks.json for build
+2. create launch.json for debug
