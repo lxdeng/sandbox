@@ -1,0 +1,30 @@
+create namespace "test"
+
+$ curl -XPOST -H "Content-Type: application/json" -d '{"apiVersion":"v1","kind":"Namespace","metadata":{"name":"test"}}' "http://127.0.0.1:8080/api/v1/namespaces"
+{
+  "kind": "Namespace",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "test",
+    "selfLink": "/api/v1/namespaces/test",
+    "uid": "57bc1290-1838-11e8-905c-0800277d9948",
+    "resourceVersion": "459512",
+    "creationTimestamp": "2018-02-23T01:24:50Z"
+  },
+  "spec": {
+    "finalizers": [
+      "kubernetes"
+    ]
+  },
+  "status": {
+    "phase": "Active"
+  }
+}
+
+
+$ kubectl get namespaces
+NAME          STATUS    AGE
+default       Active    17d
+kube-public   Active    17d
+kube-system   Active    17d
+test          Active    18s
