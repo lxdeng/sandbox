@@ -1,0 +1,6 @@
+# Playbooks are essentially sets of instructions (plays) that you send to run on a single target or groups of targets (hosts). 
+---
+- hosts: all
+  tasks:
+    - name: test ping
+      ping:

@@ -1,0 +1,12 @@
+# Playbooks are essentially sets of instructions (plays) that you send to run on a single target or groups of targets (hosts). 
+---
+- hosts: all
+  tasks:
+    - name: test ping
+      ping:
+
+    - name: install curl
+      become: true
+      apt:
+        name: curl
+        update_cache: yes

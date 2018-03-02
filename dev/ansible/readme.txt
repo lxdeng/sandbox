@@ -27,3 +27,20 @@ lu17n1 | SUCCESS => {
   #  -K ask-sudo-pass -b become root by default
   $ ansible all -b -K -m user -a 'name=testuser'
   $ ansible all -m shell -a 'id -u testuser'
+
+3. run playbook
+$ ansible-playbook ping.yml 
+
+PLAY ***************************************************************************
+
+TASK [setup] *******************************************************************
+ok: [lu17n1]
+
+TASK [test ping] ***************************************************************
+ok: [lu17n1]
+
+PLAY RECAP *********************************************************************
+lu17n1                     : ok=2    changed=0    unreachable=0    failed=0   
+
+-v to get output of command
+$ ansible-playbook -v reboot.yml
