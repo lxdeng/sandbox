@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Get A File</title>
+</head>
+<body>
+
+<h1>Fetch a file</h1>
+
+<input id="filePath" type="text" size="100">
+
+<button id="fetchButton" type="button">Get File</button>
+
+<p>
+
+<textarea id="smallFile" rows="50" cols="100">
+Small file here.
+</textarea>
+
+<script>
+  (function() {
+    document.getElementById("fetchButton").addEventListener('click', fetchFile)
+
+    function fetchFile() {
+      fileUrl = document.getElementById("filePath").value
+      if (fileUrl == "") {
+        alert("Please input the file path!");
+        return false;
+      } else {
+        httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = showFile;
+        httpRequest.open('GET', fileUrl, true);
+        httpRequest.send();       
+      }
+    }
+
+    function countLines(s) {
+      return s.split(/\r\n|\r|\n/).length - 1;
+    }
+
+    function showFile() {
+      console.log("httpRequest.readyState=" + httpRequest.readyState)
+
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        console.log("httpRequest.status=" + httpRequest.status)
+        if (httpRequest.status === 200) {
+          var f = httpRequest.responseText
+          const lines = countLines(f)
+          console.log("lines=" + lines)
+          if (lines <= 50)
+            document.getElementById("smallFile").value=f
+          else
+            document.getElementById("smallFile").value="Big file: more than 50 lines"
+            // show file using a different window
+            window.open(document.getElementById("filePath").value, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes')
+        } else {
+          document.getElementById("smallFile").value="File not found"
+        }
+      }
+    }
+
+  })();
+
+</script>
+
+</body>
+</html>
