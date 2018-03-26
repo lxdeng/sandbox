@@ -1,0 +1,22 @@
+traefik:
+  image: traefik
+  command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+  ports:
+    - "80:80"
+    - "8080:8080"
+    - "443:443"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /dev/null:/traefik.toml
+
+webv1:
+  image: katacoda/docker-http-server
+  labels:
+    - "traefik.backend=webv1"
+    - "traefik.frontend.rule=Host:webv1.example.com"
+
+webv2:
+  image: katacoda/docker-http-server:v2
+  labels:
+    - "traefik.backend=webv2"
+    - "traefik.frontend.rule=Host:webv2.example.com"
