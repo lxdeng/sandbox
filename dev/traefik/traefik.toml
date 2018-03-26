@@ -1,0 +1,22 @@
+defaultEntryPoints = ["http", "https"]
+
+[web]
+address = ":8080"
+  [web.auth.basic]
+  users = ["admin:$apr1$F.kc4GpY$AU4vL1DQjseL5qS/rDuyk/"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+      entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+
+[acme]
+email = "your_email@example.com"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+onDemand = false
