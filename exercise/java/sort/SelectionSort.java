@@ -8,6 +8,7 @@ public class SelectionSort {
 			System.out.print(x + " ");
 	}
 	
+	// select smallest one, each time
 	static void sort(int[] nums) {
 		for (int i = 0; i < nums.length - 1; i++) {
 			int minPos = i;
