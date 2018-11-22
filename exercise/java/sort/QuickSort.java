@@ -7,14 +7,14 @@ public class QuickSort {
 	static Random rand = new Random();
 
 	public static void main(String args[]) {
-		for (int i = 0; i < 100; i++) 
-			System.out.println(getRandom(0, 100));
-		/*
+		//for (int i = 0; i < 100; i++) 
+		//	System.out.println(getRandom(0, 100));
+		
 		int[] a = { 2, 5, 1, 4, 3, 6, 7};
 		sort(a);
 		for (int x : a)
 			System.out.print(x + " ");
-			*/
+			
 	}
 	
 	static void sort(int[] nums) {
@@ -24,8 +24,8 @@ public class QuickSort {
 	static void quickSort(int[] nums, int start, int end) {
 		if (start >= end) return;
 		
-		//int pIndex = partition(nums, start, end);
-		int pIndex = randomizedPartition(nums, start, end);
+		int pIndex = partition(nums, start, end);
+		//int pIndex = randomizedPartition(nums, start, end);
 		quickSort(nums, 0, pIndex - 1);
 		quickSort(nums, pIndex + 1, end);	
 	}
@@ -53,8 +53,8 @@ public class QuickSort {
 		int pivotal = nums[end];
 		
 		int pIndex = 0;		
-		int i = 0;
-		while (i < end) {
+
+		for (int i = 0; i < end; i++) {
 			if (nums[i] <= pivotal) {
 				if (pIndex != i) {
 					int temp = nums[i];
@@ -64,7 +64,6 @@ public class QuickSort {
 					
 				pIndex = pIndex + 1;	
 			}
-			i++;
 		}
 		
 		nums[end] = nums[pIndex];

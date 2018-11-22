@@ -17,14 +17,11 @@ public class InsertionSort {
 			for (j = i - 1; j >= 0; j--) {			
 				if (temp < nums[j]) {
 					nums[j + 1] = nums[j];		
-					//nums[j] = temp;
 				} else {
-					nums[j + 1] = temp;
 					break;
 				}
 			}
-			if (j < 0)
-				nums[0] = temp;
+			nums[j+1] = temp;
 		}
 	}	
 	
