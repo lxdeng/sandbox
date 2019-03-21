@@ -10,7 +10,7 @@ public class QuickSort {
 		//for (int i = 0; i < 100; i++) 
 		//	System.out.println(getRandom(0, 100));
 		
-		int[] a = { 2, 5, 1, 4, 3, 6, 7};
+		int[] a = { 7, 5, 1, 4, 3, 6, 2};
 		sort(a);
 		for (int x : a)
 			System.out.print(x + " ");
@@ -47,15 +47,16 @@ public class QuickSort {
 		
 		return partition(nums, start, end);
 		
-	}
+	} 
 	
 	static int partition(int[] nums, int start, int end) {
-		int pivotal = nums[end];
+		int pivot = nums[end];
 		
-		int pIndex = 0;		
+		int pIndex = start;		// pivot index is on the leftmost of the larger ones
 
-		for (int i = 0; i < end; i++) {
-			if (nums[i] <= pivotal) {
+		for (int i = start; i < end; i++) {
+			
+			if (nums[i] < pivot) {// each time we see a smaller one, swap it to the left of the pivot
 				if (pIndex != i) {
 					int temp = nums[i];
 					nums[i] = nums[pIndex];
@@ -67,7 +68,7 @@ public class QuickSort {
 		}
 		
 		nums[end] = nums[pIndex];
-		nums[pIndex] = pivotal;
+		nums[pIndex] = pivot;
 			
 		return pIndex;
 	}

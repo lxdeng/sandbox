@@ -3,6 +3,13 @@ public class MaxSubArray {
 
 	public static void main(String args[]) {
 		
+  	     int count = 0;
+	     int n = count;  
+	        // power of 5
+	        for (long i = 5; n >= i; i = i * 5) {
+	            count += n / i;
+	        }
+		
 		int a[] = {-2,1,-3,4,-1,2,1,-5,4};
 		
 		System.out.println(maxSubArray(a));

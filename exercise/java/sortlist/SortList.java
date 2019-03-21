@@ -4,7 +4,7 @@ public class SortList {
 	
 	public static void main(String args[]) {
 		ListNode head = createList();
-		Solution sol = new Solution();
+		Solution3 sol = new Solution3();
 		head = sol.sortList(head);
 		printList(head);
 	}
