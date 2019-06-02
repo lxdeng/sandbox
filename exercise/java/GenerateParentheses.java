@@ -12,6 +12,42 @@ public static void main(String[] args) {
 	}
 
 class Solution {
+	
+	public List<String> generateParenthesis(int n) {
+        List<String> list = new ArrayList<>();
+        search(list, 2 * n, "");
+        return list;
+    }
+    
+    void search(List<String> list, int count, String chosen) {
+        if (count == 0) {
+            if (valid(chosen))
+                list.add(chosen);
+        }
+        
+        search(list, count - 1, chosen + "(");
+        search(list, count - 1, chosen + ")");  
+    }
+    
+    boolean valid(String s) {
+        int balance = 0;
+        
+        for (char c : s.toCharArray()) {
+            if (c == '(')
+                balance++;
+            else
+                balance--;
+            
+            if (balance < 0)
+                return false;
+        }
+        
+        return balance == 0;
+    }
+	
+	
+	
+	/*
     
     public List<String> generateParenthesis(int n) {
         List<String> list = new ArrayList<String>();
@@ -71,7 +107,7 @@ class Solution {
         
         return stack.empty();
     }
-    
+    */
 }
 
 }

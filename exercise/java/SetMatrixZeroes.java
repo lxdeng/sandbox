@@ -62,6 +62,7 @@ public class SetMatrixZeroes {
         }
     }*/
 	
+	/*
 	public void setZeroes(int[][] matrix) {
         if (matrix == null || matrix.length == 0) return;
         
@@ -100,5 +101,38 @@ public class SetMatrixZeroes {
                     matrix[j][i] = 0;
         }
         
+    }*/
+	
+	public void setZeroes(int[][] matrix) {
+        int row = -1, col = -1;
+        
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (matrix[i][i] == 0) {
+                    if (row == -1) {
+                        row = i;
+                        col = j;
+                    } else {
+                        matrix[row][j] = 0;
+                        matrix[i][col] = 0;
+                    }
+                }
+            }
+        
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[0].length; j++) {
+                if (i == row || j == col) continue;
+             
+                if (matrix[row][j] == 0 || matrix[i][col] == 0)
+                    matrix[i][j] = 0;
+            }
+        
+        //print(matrix);
+        
+        for (int i = 0; i < matrix.length; i++)
+            matrix[i][col] = 0;
+        
+        for (int i = 0; i < matrix[0].length; i++)
+            matrix[row][i] = 0;
     }
 }

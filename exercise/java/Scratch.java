@@ -8,10 +8,24 @@ public class Scratch {
 	
 	public static void main(String[] args) {
 		
-		List<Integer> f[] = new List[10];
+		//List<Integer> f[] = new List[10];
 		
-		f[0] = new ArrayList<Integer>();
+		//f[0] = new ArrayList<Integer>();
 		
+		TreeMap<Integer, String> tm = new TreeMap<>();
+		tm.put(2, "test2");
+		tm.put(1, "test1");
+		
+		for (int key : tm.descendingKeySet())
+			System.out.println(key);
+		
+		TreeSet<Integer> tset = new TreeSet<>();
+		tset.add(2);
+		tset.add(1);
+		
+		for (int x : tset.descendingSet())
+			System.out.println(x);
+		 
 		/*Dog[] dogs = new Dog[2];
 		dogs[0] = new Dog("dog1");
 		dogs[1] = new Dog("dog2");
@@ -174,10 +188,7 @@ public class Scratch {
 			System.out.print(x + " ");
 		System.out.println();*/
 		
-		char c = 'z';
-	
-		int x = (c + 1) - 'z' + 'a';
-		System.out.println((char)x);
+
 		
 	}	
 	
