@@ -17,8 +17,11 @@ public class ProducerDemo {
 		String bootstrapServers = "localhost:9092";
 		//props.setProperty("boostrap.servers", bootstrapServers);
 		props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-		props.setProperty("key.serializer", StringSerializer.class.getName());
-		props.setProperty("value.serializer", StringSerializer.class.getName());
+		props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+		props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+				
+		//props.setProperty("key.serializer", StringSerializer.class.getName());
+		//props.setProperty("value.serializer", StringSerializer.class.getName());
 		
 		KafkaProducer<String, String> producer = new KafkaProducer<String, String>(props);
 		
