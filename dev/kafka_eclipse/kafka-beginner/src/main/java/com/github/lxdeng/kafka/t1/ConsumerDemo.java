@@ -20,7 +20,6 @@ public class ConsumerDemo {
 		
 		Properties props = new Properties();
 		
-		
 		String bootstrapServers = "localhost:9092";
 		props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
 		props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
