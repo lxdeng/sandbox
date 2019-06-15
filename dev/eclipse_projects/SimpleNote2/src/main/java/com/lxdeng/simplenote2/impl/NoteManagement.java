@@ -48,6 +48,12 @@ public class NoteManagement {
 		return map.get(id);
 	}
 	
+	public static boolean isValidNoteId(int id) {
+		System.out.println("isValidNoteId: " + id + " " + map.containsKey(id));
+		
+		return map.containsKey(id);
+	}
+	
 	public static void deleteNote(int id) {
 		if (map.containsKey(id))
 			map.remove(id);
