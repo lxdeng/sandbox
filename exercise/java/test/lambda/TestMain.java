@@ -5,11 +5,15 @@ public class TestMain {
 		
 		TestMain test = new TestMain();
 		
+		/*
 		test.testPreLamba();
 		
 		test.testLambaExpression();
 		
 		test.testMethodReference();
+		*/
+		
+		test.testHandleAnimal();
 	}
 
 	public void testPreLamba() {
@@ -44,5 +48,32 @@ public class TestMain {
 		
 		an.run("Method-Reference animal runs");
 		an.walk();
+	}
+	
+	void handleAnimal(Animal animal) {
+		for (int i = 0; i < 2; i++)
+			animal.walk();
+		
+		animal.run("I'm running");
+	}
+	
+	public void testHandleAnimal() {
+		
+		System.out.println("passing an object");
+		
+		Animal animal = new Animal() {
+			public void run(String runMsg) {
+				System.out.println(runMsg);
+			}
+		};
+		
+		handleAnimal(animal);
+		
+		
+		System.out.println("\npassing a lambda");
+		handleAnimal((msg) -> {System.out.println(msg);});
+	
+		System.out.println("\npassing method reference");
+		handleAnimal(System.out::println);
 	}
 }
