@@ -73,7 +73,8 @@ public class TestMain {
 		System.out.println("\npassing a lambda");
 		handleAnimal((msg) -> {System.out.println(msg);});
 	
-		System.out.println("\npassing method reference");
+		// since it only calls one method, It is a compact and easy form of lambda expression. 
+		System.out.println("\npassing method reference");  
 		handleAnimal(System.out::println);
 	}
 }
