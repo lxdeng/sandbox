@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class File {
-    private Long id;
-    private byte[] contents;
-    private FileMetadata metadata;
+    final private String id;
+    final private byte[] contents;
+    final private FileMetadata metadata;
 
-    public File(Long id, byte[] contents, List<String> labels) {
+    public File(String id, byte[] contents, List<String> labels) {
         this.id = id;
         this.contents = contents;
         metadata = new FileMetadata(contents.length, labels);
@@ -23,7 +23,7 @@ public class File {
         return this.metadata;
     }
 
-    public Long getID() {
+    public String getID() {
         return id;
     }
 }

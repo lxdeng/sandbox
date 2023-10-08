@@ -13,10 +13,10 @@ public class FileDescriptorTest {
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name=jack");
         labels.add("location=nyc");
-        FileDescriptor fd = new FileDescriptor(Long.valueOf(1), 0, labels);
+        FileDescriptor fd = new FileDescriptor("1", 0, labels);
 
-        assertEquals(fd.getID(), Long.valueOf(1));
-        assertEquals(fd.getSize(), Long.valueOf(0));
+        assertEquals(fd.getID(), "1");
+        assertEquals(fd.getSize(), 0);
         assertEquals(labels, fd.getLabels());
     }
 }

@@ -18,7 +18,7 @@ public class MapStorageTest {
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name:jack");
         labels.add("location:nyc");
-        storage.store(Long.valueOf(1), new byte[0], labels);
+        storage.store("1", new byte[0], labels);
 
         File jackFile = storage.getFilesByLabel("name:jack").get(0);
         File nycFile = storage.getFilesByLabel("location:nyc").get(0);
@@ -34,10 +34,10 @@ public class MapStorageTest {
 
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name:jack");
-        storage.store(Long.valueOf(1), new byte[0], labels);
+        storage.store("1", new byte[0], labels);
 
-        assertTrue(storage.fileExists(Long.valueOf(1)));
-        assertFalse(storage.fileExists(Long.valueOf(2)));
+        assertTrue(storage.fileExists("1"));
+        assertFalse(storage.fileExists("2"));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class MapStorageTest {
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name:jack");
         labels.add("location:nyc");
-        File f = storage.store(Long.valueOf(1), new byte[0], labels);
+        File f = storage.store("1", new byte[0], labels);
 
         assertEquals(storage.getFilesByLabel("name:jack").get(0), f);
         assertEquals(storage.getFilesByLabel("location:nyc").get(0), f);

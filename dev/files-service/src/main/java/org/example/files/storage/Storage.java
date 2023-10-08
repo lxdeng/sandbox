@@ -11,28 +11,28 @@ public interface Storage {
     /**
      * Stores a specified file and returns the stored File object
      * 
-     * @param id unique id number of the file to be stored
-     * @param bytes byte array of the file's content
-     * @param labels List of labels where each is of the format "key:value" lowercased
+     * @param id the unique id of the file to be stored
+     * @param bytes the byte array of the file's content
+     * @param labels the list of labels where each is of the format "key:value" lowercased
      * @return the stored File object
      */
-    public File store(Long id, byte[] bytes, List<String> labels);
+    public File store(String id, byte[] bytes, List<String> labels);
 
     /**
      * Checks if a file exists by its ID
      * 
-     * @param id unique id number of the file to be checked
+     * @param id the unique id of the file to be checked
      * @return true if the file has previously been stored and false if not
      */
-    public boolean fileExists(Long id);
+    public boolean fileExists(String id);
 
     /**
      * Retrieves the File object with the specified id and null if it doesn't exist
      * 
-     * @param id unique id number of the file to be retrieved
+     * @param id the unique id of the file to be retrieved
      * @return the retrieved File object or null if no such file exists
      */
-    public File getFile(Long id);
+    public File getFile(String id);
 
     /**
      * Retreives all files that contain the specified label

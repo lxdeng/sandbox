@@ -13,9 +13,9 @@ public class FileTest {
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name=jack");
         labels.add("location=nyc");
-        File f = new File(Long.valueOf(1), new byte[0], labels);
+        File f = new File("1", new byte[0], labels);
 
-        assertEquals(f.getID(), Long.valueOf(1));
+        assertEquals(f.getID(), "1");
         assertEquals(f.getContents().length, 0);
         assertEquals(f.getMetadata().getSize(), 0);
         assertEquals(f.getMetadata().getLabels(), labels);

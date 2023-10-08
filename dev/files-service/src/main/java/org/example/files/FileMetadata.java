@@ -3,8 +3,8 @@ package org.example.files;
 import java.util.List;
 
 public class FileMetadata {
-    private long size;
-    private List<String> labels;
+    final private long size;
+    final private List<String> labels;
 
     public FileMetadata(long size, List<String> labels) {
         this.size = size;

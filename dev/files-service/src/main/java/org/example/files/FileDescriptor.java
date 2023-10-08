@@ -3,14 +3,14 @@ package org.example.files;
 import java.util.List;
 
 public class FileDescriptor extends FileMetadata {
-    private Long id;
+    final private String id;
 
-    public FileDescriptor(Long counter, long size, List<String> labels) {
+    public FileDescriptor(String id, long size, List<String> labels) {
         super(size, labels);
-        this.id = counter;
+        this.id = id;
     }
 
-    public Long getID() {
+    public String getID() {
         return id;
     }
 }

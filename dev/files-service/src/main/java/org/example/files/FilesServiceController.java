@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.example.files.storage.Storage;
@@ -20,9 +21,8 @@ import org.example.files.storage.memory.MapStorage;
 
 @RestController
 public class FilesServiceController {
-	private AtomicLong counter = new AtomicLong(0);
-	private AtomicLong statusCount = new AtomicLong(0);
-	private Storage storage = new MapStorage();
+	final private AtomicLong statusCount = new AtomicLong(0);
+	final private Storage storage = new MapStorage();
 
 	@GetMapping("/status")
 	public Status status() {
@@ -31,15 +31,14 @@ public class FilesServiceController {
 
     @GetMapping("/files/{id}")
 	public FileDescriptor getFileMetadata(@PathVariable String id) {
-		Long parsedID = Long.parseLong(id);
-		if (parsedID < 1) {
+		if (id == null || id.isBlank()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid id");
 		}
-		if (!storage.fileExists(parsedID)) {
+		if (!storage.fileExists(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "resource not found");
 		}
-		File f = storage.getFile(parsedID);
-		return new FileDescriptor(parsedID, f.getMetadata().getSize(), f.getMetadata().getLabels());
+		File f = storage.getFile(id);
+		return new FileDescriptor(id, f.getMetadata().getSize(), f.getMetadata().getLabels());
 	}
 
 	//http://localhost:8080/files?labels=name:kelly,location:portland
@@ -47,8 +46,9 @@ public class FilesServiceController {
 	@PostMapping("/files")
 	public FileDescriptor uploadFile(@RequestParam("file") MultipartFile multipartFile, @RequestParam("labels") String labels) throws IOException{
 		ArrayList<String> labelList = labelsToList(labels);
-		storage.store(counter.incrementAndGet(), multipartFile.getBytes(), labelList);
-		return new FileDescriptor(counter.get(), multipartFile.getSize(), labelList);
+		String id = UUID.randomUUID().toString();
+		storage.store(id, multipartFile.getBytes(), labelList);
+		return new FileDescriptor(id, multipartFile.getSize(), labelList);
 	}
 
 	//http://localhost:8080/files?labels=name:kelly,location:portland
