@@ -1,14 +1,20 @@
-package org.example.files;
+package org.example.files.storage;
 
 import java.util.List;
 
 public class FileMetadata {
+    final private String id;
     final private long size;
     final private List<String> labels;
 
-    public FileMetadata(long size, List<String> labels) {
+    public FileMetadata(String id, long size, List<String> labels) {
+        this.id = id;
         this.size = size;
         this.labels = labels;
+    }
+
+    public String getID() {
+        return id;
     }
 
     public long getSize() {

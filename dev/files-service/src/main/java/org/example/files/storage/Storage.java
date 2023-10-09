@@ -1,6 +1,5 @@
 package org.example.files.storage;
 
-import org.example.files.File;
 import java.util.List;
 
 /**
@@ -14,9 +13,9 @@ public interface Storage {
      * @param id the unique id of the file to be stored
      * @param bytes the byte array of the file's content
      * @param labels the list of labels where each is of the format "key:value" lowercased
-     * @return the stored File object
+     * @return the FileMetadata of the stored File object
      */
-    public File store(String id, byte[] bytes, List<String> labels);
+    public FileMetadata store(String id, byte[] bytes, List<String> labels);
 
     /**
      * Checks if a file exists by its ID
@@ -35,10 +34,10 @@ public interface Storage {
     public File getFile(String id);
 
     /**
-     * Retreives all files that contain the specified label
+     * Retrieves all files that contain the specified label
      * 
      * @param label string of format "key:value" to search for files with
-     * @return List of all files that contain the specified label
+     * @return List of FileMetadata that contain the specified label
      */
-    public List<File> getFilesByLabel(String label);
+    public List<FileMetadata> searchFilesByLabel(String label);
 }

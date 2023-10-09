@@ -1,6 +1,7 @@
 package org.example.files.storage.memory;
 
-import org.example.files.File;
+import org.example.files.storage.File;
+import org.example.files.storage.FileMetadata;
 import org.example.files.storage.Storage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class MapStorage implements Storage {
-    private HashMap<String, ArrayList<File>> labelsMap; //label -> <File1, File2, File3>
+    private HashMap<String, ArrayList<FileMetadata>> labelsMap; //label -> <File1, File2, File3>
     private HashMap<String, File> idMap; // id -> File
     final private ReadWriteLock rwLock = new ReentrantReadWriteLock();
     final private Lock writeLock = rwLock.writeLock();
@@ -21,7 +22,7 @@ public class MapStorage implements Storage {
         this.idMap = new HashMap<>();
     }
 
-    public File store(String id, byte[] bytes, List<String> labels) {
+    public FileMetadata store(String id, byte[] bytes, List<String> labels) {
         File newFile;
         writeLock.lock();
  
@@ -33,13 +34,13 @@ public class MapStorage implements Storage {
                 if (!labelsMap.containsKey(l)) {
                     labelsMap.put(l, new ArrayList<>());
                 }
-                labelsMap.get(l).add(newFile);
+                labelsMap.get(l).add(newFile.getMetadata());
             }
         } finally {
             writeLock.unlock();
         }
 
-        return newFile;
+        return newFile.getMetadata();
     }
 
     public boolean fileExists(String id) {
@@ -68,8 +69,8 @@ public class MapStorage implements Storage {
         return f;
     }
 
-    public List<File> getFilesByLabel(String label) {
-        List<File> l = List.of();
+    public List<FileMetadata> searchFilesByLabel(String label) {
+        List<FileMetadata> l = List.of();
         readLock.lock();
  
         try {

@@ -1,9 +1,10 @@
-package org.example.files;
+package org.example.files.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
+import org.example.files.storage.FileMetadata;
 import org.junit.jupiter.api.Test;
 
 public class FileMetadataTest {
@@ -14,8 +15,8 @@ public class FileMetadataTest {
         labels.add("name=jack");
         labels.add("location=nyc");
 
-        FileMetadata fmd = new FileMetadata(0, labels);
-
+        FileMetadata fmd = new FileMetadata("id1", 0, labels);
+        assertEquals(fmd.getID(), "id1");
         assertEquals(fmd.getSize(), Long.valueOf(0));
         assertEquals(fmd.getLabels(), labels);
     }

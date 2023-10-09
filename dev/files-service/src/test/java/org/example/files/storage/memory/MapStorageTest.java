@@ -4,9 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.example.files.File;
+import org.example.files.storage.File;
 import java.util.ArrayList;
 
+import org.example.files.storage.FileMetadata;
 import org.junit.jupiter.api.Test;
 
 public class MapStorageTest {
@@ -20,11 +21,11 @@ public class MapStorageTest {
         labels.add("location:nyc");
         storage.store("1", new byte[0], labels);
 
-        File jackFile = storage.getFilesByLabel("name:jack").get(0);
-        File nycFile = storage.getFilesByLabel("location:nyc").get(0);
+        FileMetadata jackFile = storage.searchFilesByLabel("name:jack").get(0);
+        FileMetadata nycFile = storage.searchFilesByLabel("location:nyc").get(0);
         
-        assertEquals(storage.getFilesByLabel("name:jack").size(), 1);
-        assertEquals(storage.getFilesByLabel("location:nyc").size(), 1);
+        assertEquals(storage.searchFilesByLabel("name:jack").size(), 1);
+        assertEquals(storage.searchFilesByLabel("location:nyc").size(), 1);
         assertEquals(jackFile, nycFile);
     }
 
@@ -44,14 +45,14 @@ public class MapStorageTest {
     public void testGetFilesByLabel() {
         MapStorage storage = new MapStorage();
 
-        assertEquals(storage.getFilesByLabel("location:nyc"), new ArrayList<File>());
+        assertEquals(storage.searchFilesByLabel("location:nyc"), new ArrayList<FileMetadata>());
 
         ArrayList<String> labels = new ArrayList<>();
         labels.add("name:jack");
         labels.add("location:nyc");
-        File f = storage.store("1", new byte[0], labels);
+        FileMetadata f = storage.store("1", new byte[0], labels);
 
-        assertEquals(storage.getFilesByLabel("name:jack").get(0), f);
-        assertEquals(storage.getFilesByLabel("location:nyc").get(0), f);
+        assertEquals(storage.searchFilesByLabel("name:jack").get(0), f);
+        assertEquals(storage.searchFilesByLabel("location:nyc").get(0), f);
     }
 }

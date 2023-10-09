@@ -1,9 +1,10 @@
-package org.example.files;
+package org.example.files.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
+import org.example.files.storage.File;
 import org.junit.jupiter.api.Test;
 
 public class FileTest {

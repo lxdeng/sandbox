@@ -1,18 +1,16 @@
-package org.example.files;
+package org.example.files.storage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import org.example.files.storage.FileMetadata;
+
 import java.util.List;
 
 public class File {
-    final private String id;
     final private byte[] contents;
     final private FileMetadata metadata;
 
     public File(String id, byte[] contents, List<String> labels) {
-        this.id = id;
         this.contents = contents;
-        metadata = new FileMetadata(contents.length, labels);
+        metadata = new FileMetadata(id, contents.length, labels);
     }
 
     public byte[] getContents() {
@@ -24,6 +22,6 @@ public class File {
     }
 
     public String getID() {
-        return id;
+        return metadata.getID();
     }
 }

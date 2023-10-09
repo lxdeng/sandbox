@@ -1,16 +1,16 @@
 package org.example.files;
 
+import org.example.files.storage.FileMetadata;
+
 import java.util.List;
 
 public class FileDescriptor extends FileMetadata {
-    final private String id;
 
     public FileDescriptor(String id, long size, List<String> labels) {
-        super(size, labels);
-        this.id = id;
+        super(id, size, labels);
     }
 
-    public String getID() {
-        return id;
+    public FileDescriptor(FileMetadata fileMetadata) {
+        super(fileMetadata.getID(), fileMetadata.getSize(), fileMetadata.getLabels());
     }
 }

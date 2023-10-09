@@ -1,5 +1,7 @@
 package org.example.files;
 
+import org.example.files.storage.File;
+import org.example.files.storage.FileMetadata;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,27 +57,25 @@ public class FilesServiceController {
 	@GetMapping("/files")
 	public List<FileDescriptor> searchFiles(@RequestParam("labels") String labels) {
 		ArrayList<String> labelList = labelsToList(labels);
-		ArrayList<File> resultFiles = new ArrayList<>();
+		ArrayList<FileMetadata> resultFiles = new ArrayList<>();
 
-		List<File> firstList = storage.getFilesByLabel(labelList.get(0));
-		for (File f : firstList) {
-			resultFiles.add(f);
-		}
+		List<FileMetadata> firstList = storage.searchFilesByLabel(labelList.get(0));
+		resultFiles.addAll(firstList);
 
 		for (int i = 1; i < labelList.size(); i++) {
-			resultFiles.retainAll(storage.getFilesByLabel(labelList.get(i)));
+			resultFiles.retainAll(storage.searchFilesByLabel(labelList.get(i)));
 		}
 
-		List<FileDescriptor> result = new ArrayList<FileDescriptor>();
-		for(File f : resultFiles) {
-			FileDescriptor fd = new FileDescriptor(f.getID(), f.getMetadata().getSize(), f.getMetadata().getLabels());
+		List<FileDescriptor> result = new ArrayList<>();
+		for(FileMetadata f : resultFiles) {
+			FileDescriptor fd = new FileDescriptor(f);
 			result.add(fd);
 		}
 		return result;
 	}
 
 	public static ArrayList<String> labelsToList(String labels) {
-		ArrayList<String> labelsArrlist = new ArrayList<String>();
+		ArrayList<String> labelsArrlist = new ArrayList<>();
 		
 		Boolean nameIncluded = false;
 		String[] labelsArr = labels.split(","); //["name:kelly", "location:portland"]
