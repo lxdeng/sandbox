@@ -69,6 +69,11 @@ public class MapStorage implements Storage {
         return f;
     }
 
+    public FileMetadata getFileMetadata(String id) {
+        File f = getFile(id);
+        return f == null ? null : f.getMetadata();
+    }
+
     public List<FileMetadata> searchFilesByLabel(String label) {
         List<FileMetadata> l = List.of();
         readLock.lock();

@@ -39,8 +39,8 @@ public class FilesServiceController {
 		if (!storage.fileExists(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "resource not found");
 		}
-		File f = storage.getFile(id);
-		return new FileDescriptor(id, f.getMetadata().getSize(), f.getMetadata().getLabels());
+		FileMetadata f = storage.getFileMetadata(id);
+		return new FileDescriptor(f);
 	}
 
 	//http://localhost:8080/files?labels=name:kelly,location:portland

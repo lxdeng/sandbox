@@ -34,6 +34,14 @@ public interface Storage {
     public File getFile(String id);
 
     /**
+     * Retrieves the FileMetadata object with the specified id and null if it doesn't exist
+     *
+     * @param id the unique id of the file to be retrieved
+     * @return the retrieved FileMetadata object or null if no such file exists
+     */
+    public FileMetadata getFileMetadata(String id);
+
+    /**
      * Retrieves all files that contain the specified label
      * 
      * @param label string of format "key:value" to search for files with
