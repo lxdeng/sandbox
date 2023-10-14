@@ -11,8 +11,8 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class MapStorage implements Storage {
-    private HashMap<String, ArrayList<FileMetadata>> labelsMap; //label -> <File1, File2, File3>
-    private HashMap<String, File> idMap; // id -> File
+    private final HashMap<String, ArrayList<FileMetadata>> labelsMap; //label -> <FileMetadat1, FileMetadata2, FileMetadata3>
+    private final HashMap<String, File> idMap; // id -> File
     final private ReadWriteLock rwLock = new ReentrantReadWriteLock();
     final private Lock writeLock = rwLock.writeLock();
     final private Lock readLock = rwLock.readLock();
@@ -22,6 +22,7 @@ public class MapStorage implements Storage {
         this.idMap = new HashMap<>();
     }
 
+    @Override
     public FileMetadata store(String id, byte[] bytes, List<String> labels) {
         File newFile;
         writeLock.lock();
@@ -43,6 +44,7 @@ public class MapStorage implements Storage {
         return newFile.getMetadata();
     }
 
+    @Override
     public boolean fileExists(String id) {
         boolean exists;
         readLock.lock();
@@ -55,6 +57,7 @@ public class MapStorage implements Storage {
         return exists;
     }
 
+    @Override
     public File getFile(String id) {
         File f = null;
         readLock.lock();
@@ -69,15 +72,17 @@ public class MapStorage implements Storage {
         return f;
     }
 
+    @Override
     public FileMetadata getFileMetadata(String id) {
         File f = getFile(id);
         return f == null ? null : f.getMetadata();
     }
 
+    @Override
     public List<FileMetadata> searchFilesByLabel(String label) {
         List<FileMetadata> l = List.of();
+
         readLock.lock();
- 
         try {
             if (labelsMap.containsKey(label)) {
                 l = labelsMap.get(label);

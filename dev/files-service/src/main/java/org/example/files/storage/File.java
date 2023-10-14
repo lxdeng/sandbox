@@ -1,20 +1,23 @@
 package org.example.files.storage;
 
-import org.example.files.storage.FileMetadata;
-
 import java.util.List;
 
 public class File {
-    final private byte[] contents;
+    final private byte[] content;
     final private FileMetadata metadata;
 
-    public File(String id, byte[] contents, List<String> labels) {
-        this.contents = contents;
-        metadata = new FileMetadata(id, contents.length, labels);
+    public File(String id, byte[] content, List<String> labels) {
+        this.content = content;
+        metadata = new FileMetadata(id, content.length, labels);
     }
 
-    public byte[] getContents() {
-        return this.contents;
+    public File(FileMetadata metadata, byte[] content) {
+        this.metadata = metadata;
+        this.content = content;
+    }
+
+    public byte[] getContent() {
+        return this.content;
     }
 
     public FileMetadata getMetadata() {

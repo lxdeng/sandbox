@@ -1,7 +1,7 @@
 package org.example.files;
 
-import org.example.files.storage.File;
 import org.example.files.storage.FileMetadata;
+import org.example.files.storage.db.SqlStorage;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,15 @@ import org.example.files.storage.memory.MapStorage;
 @RestController
 public class FilesServiceController {
 	final private AtomicLong statusCount = new AtomicLong(0);
-	final private Storage storage = new MapStorage();
+	final private Storage storage;
+
+	public FilesServiceController() {
+		if (FilesApplication.storageType.equals(FilesApplication.MEM_TYPE)) {
+			storage = new MapStorage();
+		} else {
+			storage = new SqlStorage();
+		}
+	}
 
 	@GetMapping("/status")
 	public Status status() {
@@ -46,7 +54,7 @@ public class FilesServiceController {
 	//http://localhost:8080/files?labels=name:kelly,location:portland
 	//need minimum name label
 	@PostMapping("/files")
-	public FileDescriptor uploadFile(@RequestParam("file") MultipartFile multipartFile, @RequestParam("labels") String labels) throws IOException{
+	public FileDescriptor uploadFile(@RequestParam("file") MultipartFile multipartFile, @RequestParam("labels") String labels) throws IOException {
 		ArrayList<String> labelList = labelsToList(labels);
 		String id = UUID.randomUUID().toString();
 		storage.store(id, multipartFile.getBytes(), labelList);

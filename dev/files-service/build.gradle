@@ -17,6 +17,10 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.1.0'
+	runtimeOnly group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+
+	// https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+	implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
